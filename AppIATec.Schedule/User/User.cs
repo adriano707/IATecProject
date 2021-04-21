@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Reflection.Metadata.Ecma335;
-using System.Text;
+using Schedule.Domain.Event;
 
-namespace Schedule.Domain
+namespace Schedule.Domain.User
 {
     public class User
     {

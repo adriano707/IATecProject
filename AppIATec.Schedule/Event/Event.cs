@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.Common;
-using System.Text;
 
-namespace Schedule.Domain
+namespace Schedule.Domain.Event
 {
     public class Event
     {

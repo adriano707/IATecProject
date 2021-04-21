@@ -8,9 +8,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Schedule.Data.Configuration
 {
-    class ScheduleConfiguration : IEntityTypeConfiguration<Domain.Schedule>
+    class ScheduleConfiguration : IEntityTypeConfiguration<Domain.Shedule.Schedule>
     {
-        public void Configure(EntityTypeBuilder<Domain.Schedule> builder)
+        public void Configure(EntityTypeBuilder<Domain.Shedule.Schedule> builder)
         {
             builder.HasKey(a => a.Id);
         }

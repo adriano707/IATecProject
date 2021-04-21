@@ -30,7 +30,7 @@ namespace Schedule.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateSchelude([FromBody] ScheduleDto scheduleDto)
         {
-            Domain.Schedule schedule = new Domain.Schedule(scheduleDto.Name, scheduleDto.ScheduleEvents);
+            Domain.Shedule.Schedule schedule = new Domain.Shedule.Schedule(scheduleDto.Name, scheduleDto.ScheduleEvents);
             _scheduleContext.Add(schedule);
             await _scheduleContext.SaveChangesAsync();
             return Ok();

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Schedule.Domain;
+using Schedule.Domain.Shedule;
 
 namespace Schedule.Api.Dto
 {

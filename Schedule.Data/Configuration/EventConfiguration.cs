@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Schedule.Domain;
+using Schedule.Domain.Event;
 
 namespace Schedule.Data.Config
 {

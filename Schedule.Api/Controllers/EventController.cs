@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Schedule.Api.Dto;
 using Schedule.Data;
 using Schedule.Domain;
+using Schedule.Domain.Event;
 
 namespace Schedule.Api.Controllers
 {

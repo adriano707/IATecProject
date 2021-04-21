@@ -4,6 +4,8 @@ using System.Reflection;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
 using Schedule.Domain;
+using Schedule.Domain.Event;
+using Schedule.Domain.User;
 
 namespace Schedule.Data
 {
@@ -11,7 +13,7 @@ namespace Schedule.Data
     {
         public DbSet<User> User { get; set; }
         public DbSet<Event> Event { get; set; }
-        public DbSet<Domain.Schedule> Schedule { get; set; }
+        public DbSet<Domain.Shedule.Schedule> Schedule { get; set; }
 
         public ScheduleContext() { }
 
