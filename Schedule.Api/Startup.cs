@@ -35,7 +35,7 @@ namespace Schedule.Api
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Schedule.Api", Version = "v1" });
             });
 
-            services.AddDbContext<ScheduleContext>(opt => opt.UseInMemoryDatabase("db_event"));
+            services.AddDbContext<ScheduleContext>(opt => opt.UseSqlServer("server=localhost;user id=sa;password=21080621;database=db_iatec"));
 
             services.AddScoped<ScheduleContext>();
         }

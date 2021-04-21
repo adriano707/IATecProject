@@ -43,6 +43,7 @@ namespace Schedule.Api.Controllers
                 eventDto.Paticipants,
                 eventDto.Category
                 );
+            _scheduleContext.Add(@event);
             await _scheduleContext.SaveChangesAsync();
             return Ok(@event);
         }

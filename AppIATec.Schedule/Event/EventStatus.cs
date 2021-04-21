@@ -2,8 +2,8 @@
 {
     public enum EventStatus
     {
-        AGENDADO = 1,
-        EM_ANDAMENTO = 2,
-        FINALIZADO = 3
+        SCHEDULED = 1,
+        IN_PROGRESS = 2,
+        FINISHED = 3
     }
 }

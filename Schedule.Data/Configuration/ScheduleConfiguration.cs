@@ -8,11 +8,20 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Schedule.Data.Configuration
 {
-    class ScheduleConfiguration : IEntityTypeConfiguration<Domain.Shedule.Schedule>
+    class ScheduleConfiguration : IEntityTypeConfiguration<Domain.Schedule.Schedule>
     {
-        public void Configure(EntityTypeBuilder<Domain.Shedule.Schedule> builder)
+        public void Configure(EntityTypeBuilder<Domain.Schedule.Schedule> builder)
         {
             builder.HasKey(a => a.Id);
+
+            builder
+                .HasMany(e => e.ScheduleEvents);
+
+            var navigation =
+                builder.Metadata.FindNavigation(nameof(Domain.Schedule.Schedule.ScheduleEvents));
+
+            //EF access the OrderItem collection property through its backing field
+            navigation.SetPropertyAccessMode(PropertyAccessMode.Field);
         }
     }
 }

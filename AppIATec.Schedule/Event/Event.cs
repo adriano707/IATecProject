@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection.Metadata;
 
 namespace Schedule.Domain.Event
 {
@@ -10,6 +11,7 @@ namespace Schedule.Domain.Event
         public DateTime Date { get; private set; }
         public string Local { get; private set; }
         public int Paticipants { get; private set; }
+        public EventStatus Status { get; set; }
         public Category Category { get; private set; }
        
 
