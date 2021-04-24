@@ -9,10 +9,12 @@ namespace Schedule.Domain.User
         public string Name { get; private set; }
         public string Email { get; private set; }
         public string Login { get; private set; }
-        public string Password { get; private set; }
+        public string Password { get; set; }
         public DateTime BirthDate { get; private set; }
         public Sex Sex { get; private set; }
         public EventType Type { get; set; }
+
+        public User() { }
 
         public User(string name, string email, string login, string password, DateTime birthDate, Sex sex, EventType type)
         {

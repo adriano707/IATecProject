@@ -15,7 +15,6 @@ namespace Schedule.Api.Dto
         public DateTime Date { get; set; }
         public string Local { get; set; }
         public int Paticipants { get; set; }
-        public Category Category { get; set; }
-        
+
     }
 }

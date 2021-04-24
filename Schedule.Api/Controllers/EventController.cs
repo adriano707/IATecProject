@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Schedule.Api.Dto;
 using Schedule.Data;
@@ -10,6 +11,8 @@ using Schedule.Domain.Event;
 
 namespace Schedule.Api.Controllers
 {
+
+    [Authorize]
     [ApiController]
     [Route("events")]
     public class EventController : ControllerBase
@@ -24,8 +27,10 @@ namespace Schedule.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetEvent()
         {
+
             var @event = _scheduleContext.Event.ToList();
             return Ok(@event);
+
         }
 
         [HttpPost]
@@ -40,8 +45,8 @@ namespace Schedule.Api.Controllers
                 eventDto.Type,
                 eventDto.Date,
                 eventDto.Local,
-                eventDto.Paticipants,
-                eventDto.Category
+                eventDto.Paticipants
+               
                 );
             _scheduleContext.Add(@event);
             await _scheduleContext.SaveChangesAsync();
@@ -55,7 +60,7 @@ namespace Schedule.Api.Controllers
 
             if (@event == null)
                 return NotFound("Event does not exist. ");
-            @event.UpdateEvent(eventDto.Name, eventDto.Type, eventDto.Date, eventDto.Local, eventDto.Paticipants, eventDto.Category);
+            @event.UpdateEvent(eventDto.Name, eventDto.Type, eventDto.Date, eventDto.Local, eventDto.Paticipants);
             _scheduleContext.Update(@event);
             await _scheduleContext.SaveChangesAsync();
             return Ok(@event);

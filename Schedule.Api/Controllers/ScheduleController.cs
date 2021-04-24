@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
 using System.Linq;
+using System.Security;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Schedule.Api.Dto;
 using Schedule.Data;
@@ -10,6 +12,7 @@ using Schedule.Domain.Event;
 
 namespace Schedule.Api.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("schedules")]
     public class ScheduleController : ControllerBase
@@ -21,7 +24,10 @@ namespace Schedule.Api.Controllers
             _scheduleContext = scheduleContext;
         }
 
-
+        /// <summary>
+        /// Get all schendules
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> GetSchedule()
         {
@@ -29,10 +35,17 @@ namespace Schedule.Api.Controllers
             return Ok(schedule);
         }
 
+        /// <summary>
+        /// Metodo para adicionar um evento existente em uma agenda.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="eventDtoId"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("{id}/events")]
         public async Task<IActionResult> AddEvent([FromRoute] Guid id, [FromBody] EventDtoId eventDtoId)
         {
+
             var schendule = _scheduleContext.Schedule.FirstOrDefault(e => e.Id == id);
 
             if (schendule == null)
@@ -52,6 +65,19 @@ namespace Schedule.Api.Controllers
 
             await _scheduleContext.SaveChangesAsync();
             return Ok(@event);
+
+        }
+
+      [HttpGet]
+        [Route("{id}/events")]
+        public async Task<IActionResult> GetEventBySchedule([FromRoute] Guid id)
+        {
+
+            var events = _scheduleContext.ScheduleEvent
+                .Where(e => e.ScheduleId == id)
+                .Select(e => e.Event)
+                .ToList();
+            return Ok(events);
         }
 
 

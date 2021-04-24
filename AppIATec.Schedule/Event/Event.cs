@@ -12,10 +12,9 @@ namespace Schedule.Domain.Event
         public string Local { get; private set; }
         public int Paticipants { get; private set; }
         public EventStatus Status { get; set; }
-        public Category Category { get; private set; }
        
 
-        public Event(string name, EventType type, DateTime date, string local, int paticipants, Category category)
+        public Event(string name, EventType type, DateTime date, string local, int paticipants)
         {
             Id = Guid.NewGuid();
             Name = name ?? throw new ArgumentException(nameof(name));
@@ -23,18 +22,16 @@ namespace Schedule.Domain.Event
             Date = date;
             Local = local ?? throw new ArgumentException(nameof(local));
             Paticipants = paticipants;
-            Category = category;
 
         }
 
-        public void UpdateEvent(string name, EventType type, DateTime date, string local, int participants, Category category)
+        public void UpdateEvent(string name, EventType type, DateTime date, string local, int participants)
         {
             Name = name;
             Type = type;
             Date = date;
             Local = local;
             Paticipants = participants;
-            Category = category;
         }
     }
 }

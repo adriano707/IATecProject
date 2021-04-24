@@ -8,8 +8,15 @@ namespace Schedule.Domain.Schedule
     {
         private readonly List<ScheduleEvent> _scheduleEvents;
         public Guid Id { get; private set; }
+
+        /// <summary>
+        /// Name of the schedule
+        /// </summary>
         public string Name { get; private set; }
 
+        /// <summary>
+        /// return a list with shcedule's event
+        /// </summary>
         public IReadOnlyCollection<ScheduleEvent> ScheduleEvents => _scheduleEvents;
         
         
