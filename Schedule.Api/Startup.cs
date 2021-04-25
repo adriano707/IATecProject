@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Schedule.Api.Authorization;
+using Schedule.Api.Swegger;
 using Schedule.Data;
 
 namespace Schedule.Api
@@ -36,61 +37,14 @@ namespace Schedule.Api
             services.AddCors();
             services.AddControllers();
 
-            var key = Encoding.ASCII.GetBytes(Setting.Secret);
-            services.AddAuthentication(x =>
-                {
-                    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                })
-                .AddJwtBearer(x =>
-                {
-                    x.RequireHttpsMetadata = false;
-                    x.SaveToken = true;
-                    x.TokenValidationParameters = new TokenValidationParameters
-                    {
-                        ValidateIssuerSigningKey = true,
-                        IssuerSigningKey = new SymmetricSecurityKey(key),
-                        ValidateIssuer = false,
-                        ValidateAudience = false
-                    };
-                });
+            services.AddBearerConfiguration();
 
             services.AddControllers();
 
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo
-                {
-                    Title = "Schendule",
-                    Version = "v1"
-                });
-                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-                {
-                    In = ParameterLocation.Header,
-                    Description = "Please insert JWT with Bearer into field",
-                    Name = "Authorization",
-                    Type = SecuritySchemeType.ApiKey
-                });
-                c.AddSecurityRequirement(new OpenApiSecurityRequirement {
-                    {
-                        new OpenApiSecurityScheme
-                        {
-                            Reference = new OpenApiReference
-                            {
-                                Type = ReferenceType.SecurityScheme,
-                                Id = "Bearer"
-                            }
-                        },
-                        new string[] { }
-                    }
-                });
-            });
+            services.AddSwegger();
 
-            services.AddDbContext<ScheduleContext>(opt => opt.UseSqlServer("server=localhost;user id=sa;password=21080621;database=db_iatec"));
+            services.AddDatabase();
 
-            services.AddScoped<ScheduleContext>();
-
-           
 
         }
 
@@ -114,8 +68,7 @@ namespace Schedule.Api
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseSwagger();
-            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Schedule.Api v1"));
+            app.UseSwegger();
 
             app.UseEndpoints(endpoints =>
             {
