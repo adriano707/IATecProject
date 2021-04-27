@@ -60,14 +60,17 @@ namespace Schedule.Api.Controllers
 
             if (@event == null)
                 return NotFound("Event does not exist. ");
+
             @event.UpdateEvent(eventDto.Name, eventDto.Type, eventDto.Date, eventDto.Local, eventDto.Paticipants);
+
             _scheduleContext.Update(@event);
             await _scheduleContext.SaveChangesAsync();
+
             return Ok(@event);
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteEvent(Guid id, [FromBody] EventDto eventDto)
+        public async Task<IActionResult> DeleteEvent(Guid id)
         {
             Event @event = _scheduleContext.Event.FirstOrDefault(a => a.Id == id);
 

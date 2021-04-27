@@ -61,8 +61,21 @@ namespace Schedule.Api.Controllers
             User user = _scheduleContext.User.FirstOrDefault(a => a.Id == id);
 
             if (user == null) return NotFound();
-            user.UpdateUser(userDto.Name, userDto.Email, userDto.Login, userDto.Password, userDto.BirthDate, userDto.Sex, userDto.Type);
+            user.UpdateUser(userDto.Name, userDto.Email, userDto.Login, userDto.Password, userDto.BirthDate, userDto.Sex);
             _scheduleContext.Update(user);
+            await _scheduleContext.SaveChangesAsync();
+            return Ok();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteUser(Guid id)
+        {
+            User user = _scheduleContext.User.FirstOrDefault(u => u.Id == id);
+
+            if (user == null) 
+                return NotFound();
+
+            _scheduleContext.Remove(user);
             await _scheduleContext.SaveChangesAsync();
             return Ok();
         }
@@ -75,8 +88,7 @@ namespace Schedule.Api.Controllers
                 userDto.Login,
                 userDto.Password,
                 userDto.BirthDate,
-                userDto.Sex,
-                userDto.Type);
+                userDto.Sex);
             _scheduleContext.Add(user);
             await _scheduleContext.SaveChangesAsync();
             return Ok(user);

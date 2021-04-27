@@ -11,12 +11,11 @@ namespace Schedule.Domain.User
         public string Login { get; private set; }
         public string Password { get; set; }
         public DateTime BirthDate { get; private set; }
-        public Sex Sex { get; private set; }
-        public EventType Type { get; set; }
+        public Sex? Sex { get; private set; }
 
         public User() { }
 
-        public User(string name, string email, string login, string password, DateTime birthDate, Sex sex, EventType type)
+        public User(string name, string email, string login, string password, DateTime birthDate, Sex? sex)
         {
             Id = Guid.NewGuid();
             Name = name ?? throw new ArgumentException(nameof(name));
@@ -25,10 +24,9 @@ namespace Schedule.Domain.User
             Password = password ?? throw new ArgumentException(nameof(password));
             BirthDate = birthDate;
             Sex = sex;
-            Type = type;
         }
 
-        public void UpdateUser(string name, string email, string login, string password, DateTime birthDate, Sex sex, EventType type)
+        public void UpdateUser(string name, string email, string login, string password, DateTime birthDate, Sex? sex)
         {
             Name = name;
             Email = email;
@@ -36,7 +34,11 @@ namespace Schedule.Domain.User
             Password = password;
             BirthDate = birthDate;
             Sex = sex;
-            Type = type;
+        }
+
+        public void UpdatePassword(string password)
+        {
+            Password = password;
         }
     }
 }
