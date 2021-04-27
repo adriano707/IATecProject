@@ -24,6 +24,11 @@ namespace Schedule.Api.Controllers
 
         private readonly ScheduleContext _scheduleContext;
 
+
+        /// <summary>
+        /// Method to return list of events
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> GetEvent()
         {
@@ -33,6 +38,12 @@ namespace Schedule.Api.Controllers
 
         }
 
+
+        /// <summary>
+        /// Method for creating events.
+        /// </summary>
+        /// <param name="eventDto"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> CreateEvent([FromBody] EventDto eventDto)
         {
@@ -53,6 +64,13 @@ namespace Schedule.Api.Controllers
             return Ok(@event);
         }
 
+
+        /// <summary>
+        /// Method for updating events.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="eventDto"></param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateEvent(Guid id, [FromBody] EventDto eventDto)
         {
@@ -69,6 +87,12 @@ namespace Schedule.Api.Controllers
             return Ok(@event);
         }
 
+
+        /// <summary>
+        /// Method for deleting events.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteEvent(Guid id)
         {

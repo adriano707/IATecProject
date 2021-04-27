@@ -25,6 +25,11 @@ namespace Schedule.Api.Controllers
 
         private readonly ScheduleContext _scheduleContext;
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> GetUser()
         {
@@ -32,6 +37,12 @@ namespace Schedule.Api.Controllers
             return Ok(user);
         }
 
+
+        /// <summary>
+        /// Method to validate the user's login
+        /// </summary>
+        /// <param name="userLoginDto"></param>
+        /// <returns></returns>
         [HttpPost]
         [AllowAnonymous]
         [Route("login")]
@@ -55,6 +66,13 @@ namespace Schedule.Api.Controllers
             return Ok(returnLoginDto);
         }
 
+
+        /// <summary>
+        /// Method that updates a user
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="userDto"></param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateUser(Guid id, [FromBody] UserDto userDto)
         {
@@ -67,6 +85,12 @@ namespace Schedule.Api.Controllers
             return Ok();
         }
 
+
+        /// <summary>
+        /// Method that deletes a user
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(Guid id)
         {
@@ -80,6 +104,12 @@ namespace Schedule.Api.Controllers
             return Ok();
         }
 
+
+        /// <summary>
+        /// Method to register a user
+        /// </summary>
+        /// <param name="userDto"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> RegisterUser([FromBody] UserDto userDto)
         {

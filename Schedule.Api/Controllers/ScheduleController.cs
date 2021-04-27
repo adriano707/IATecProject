@@ -36,7 +36,7 @@ namespace Schedule.Api.Controllers
         }
 
         /// <summary>
-        /// Metodo para adicionar um evento existente em uma agenda.
+        /// Method for adding an existing event to a calendar.
         /// </summary>
         /// <param name="id"></param>
         /// <param name="eventDtoId"></param>
@@ -68,7 +68,13 @@ namespace Schedule.Api.Controllers
 
         }
 
-      [HttpGet]
+
+        /// <summary>
+        /// Method that takes an event on the schedule.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
         [Route("{id}/events")]
         public async Task<IActionResult> GetEventBySchedule([FromRoute] Guid id)
         {
@@ -81,6 +87,11 @@ namespace Schedule.Api.Controllers
         }
 
 
+        /// <summary>
+        /// Method for creating an schedule
+        /// </summary>
+        /// <param name="scheduleDto"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> CreateSchedule([FromBody] ScheduleDto scheduleDto)
         {
