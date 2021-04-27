@@ -36,9 +36,5 @@ namespace Schedule.Domain.User
             Sex = sex;
         }
 
-        public void UpdatePassword(string password)
-        {
-            Password = password;
-        }
     }
 }
