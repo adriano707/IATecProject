@@ -34,7 +34,7 @@ namespace Schedule.Data.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Paticipants")
+                    b.Property<int>("Participants")
                         .HasColumnType("int");
 
                     b.Property<int>("Status")

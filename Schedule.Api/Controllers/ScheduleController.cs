@@ -57,7 +57,7 @@ namespace Schedule.Api.Controllers
                 return NotFound("Event not found");
 
             if (@event.Status == EventStatus.FINISHED)
-                return Conflict("Evento já finalizado");
+                return Conflict("Event already finished");
 
             schendule.AddEvent(@event);
 

@@ -14,7 +14,7 @@ namespace Schedule.Api.Dto
         public EventType Type { get;  set; }
         public DateTime Date { get; set; }
         public string Local { get; set; }
-        public int Paticipants { get; set; }
-
+        public int Participants { get; set; }
+        public EventStatus Status { get; set; }
     }
 }

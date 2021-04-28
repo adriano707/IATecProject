@@ -50,15 +50,16 @@ namespace Schedule.Api.Controllers
 
             if (eventDto.Type == EventType.EXCLUSIVE &&
                 _scheduleContext.Event.Any(a => a.Type == EventType.EXCLUSIVE && a.Date == eventDto.Date))
-                return Conflict("Eventos excluisivos na mesma data.");
+                return Conflict("Exclusive events on the same date.");
 
             Event @event = new Event(eventDto.Name,
                 eventDto.Type,
                 eventDto.Date,
                 eventDto.Local,
-                eventDto.Paticipants
-               
-                );
+                eventDto.Participants,
+                eventDto.Status
+
+            );
             _scheduleContext.Add(@event);
             await _scheduleContext.SaveChangesAsync();
             return Ok(@event);
@@ -79,7 +80,7 @@ namespace Schedule.Api.Controllers
             if (@event == null)
                 return NotFound("Event does not exist. ");
 
-            @event.UpdateEvent(eventDto.Name, eventDto.Type, eventDto.Date, eventDto.Local, eventDto.Paticipants);
+            @event.UpdateEvent(eventDto.Name, eventDto.Type, eventDto.Date, eventDto.Local, eventDto.Participants);
 
             _scheduleContext.Update(@event);
             await _scheduleContext.SaveChangesAsync();

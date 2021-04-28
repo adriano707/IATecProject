@@ -10,18 +10,19 @@ namespace Schedule.Domain.Event
         public EventType Type { get; private set; }
         public DateTime Date { get; private set; }
         public string Local { get; private set; }
-        public int Paticipants { get; private set; }
-        public EventStatus Status { get; set; }
+        public int Participants { get; private set; }
+        public EventStatus Status { get; private set; }
        
 
-        public Event(string name, EventType type, DateTime date, string local, int paticipants)
+        public Event(string name, EventType type, DateTime date, string local, int participants, EventStatus status)
         {
             Id = Guid.NewGuid();
             Name = name ?? throw new ArgumentException(nameof(name));
             Type = type;
             Date = date;
             Local = local ?? throw new ArgumentException(nameof(local));
-            Paticipants = paticipants;
+            Participants = participants;
+            Status = status;
 
         }
 
@@ -31,7 +32,7 @@ namespace Schedule.Domain.Event
             Type = type;
             Date = date;
             Local = local;
-            Paticipants = participants;
+            Participants = participants;
         }
     }
 }
